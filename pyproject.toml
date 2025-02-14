@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "httpstatus"
+version = "0.1.0"
+description = "A Python package providing an enumeration of HTTP status codes with names and descriptions"
+authors = ["Kian Jearard G. Naquines"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
