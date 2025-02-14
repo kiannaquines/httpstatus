@@ -1,7 +1,21 @@
-from enum import Enum
+from enum import Enum, unique
+from dataclasses import dataclass
 from typing import List
 
-class HTTPStatus(Enum):
+@dataclass
+class HTTPStatusMixins:
+    """
+    A dataclass that contains the attributes of an HTTP status code.
+    - `status`: The integer value of the HTTP status code.
+    - `name`: The name of the HTTP status code.
+    - `description`: A brief description of the status code.
+    """
+    status: int
+    name: str
+    description: str
+
+@unique
+class HTTPStatus(HTTPStatusMixins, Enum):
     """
     A Python Enum class representing HTTP status codes along with their name and descriptions.
     Each enum member has three attributes:
@@ -85,37 +99,31 @@ class HTTPStatus(Enum):
     NOT_EXTENDED = (510, "Not Extended", "Further extensions to the request are required for the server to fulfill it.")
     NETWORK_AUTHENTICATION_REQUIRED = (511, "Network Authentication Required", "The client needs to authenticate to gain network access.")
 
-
-
     def __init__(self, status: int, name: str, description: str):
         """
         Initialize an HTTPStatus enum member.
-
-        Args:
-            status (int): The integer value of the HTTP status code.
-            name (str): The name of the HTTP status code.
-            description (str): A brief description of the status code.
         """
         self._status = status
         self._name = name
         self._description = description
 
-
     @property
     def status(self) -> int:
         return self._status
-    
+
     @property
     def name(self) -> str:
         return self._name
-    
+
     @property
     def description(self) -> str:
         return self._description
-    
 
     @classmethod
     def from_status(cls, status_code: int):
+        """
+        Returns the HTTPStatus enum member corresponding to the given status code.
+        """
         for status in cls:
             if status.status == status_code:
                 return status
@@ -123,23 +131,38 @@ class HTTPStatus(Enum):
 
     @classmethod
     def informational_responses(cls) -> List['HTTPStatus']:
+        """
+        Returns a list of all HTTP status codes in the 1xx range.
+        """
         return [status for status in cls if 100 <= status.status < 200]
 
     @classmethod
     def success_responses(cls) -> List['HTTPStatus']:
+        """
+        Returns a list of all HTTP status codes in the 2xx range.
+        """
         return [status for status in cls if 200 <= status.status < 300]
 
     @classmethod
     def redirection_responses(cls) -> List['HTTPStatus']:
+        """
+        Returns a list of all HTTP status codes in the 3xx range.
+        """
         return [status for status in cls if 300 <= status.status < 400]
 
     @classmethod
     def client_error_responses(cls) -> List['HTTPStatus']:
+        """
+        Returns a list of all HTTP status codes in the 4xx range.
+        """
         return [status for status in cls if 400 <= status.status < 500]
 
     @classmethod
     def server_error_responses(cls) -> List['HTTPStatus']:
+        """
+        Returns a list of all HTTP status codes in the 5xx range.
+        """
         return [status for status in cls if 500 <= status.status < 600]
-    
+
     def __str__(self):
-        return f'{self._status} {self._name}: {self._description}'
+        return f'{self.status} {self.name}: {self.description}'
