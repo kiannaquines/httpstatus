@@ -1,4 +1,4 @@
-from httpstatus.http_status import HTTPStatus
+from httpstatus.httpstatus import HTTPStatus
 
 print(HTTPStatus.OK)
 

@@ -1,4 +1,4 @@
-from enum import Enum, unique
+from enum import Enum
 from dataclasses import dataclass
 from typing import List
 
@@ -14,7 +14,6 @@ class HTTPStatusMixins:
     name: str
     description: str
 
-@unique
 class HTTPStatus(HTTPStatusMixins, Enum):
     """
     A Python Enum class representing HTTP status codes along with their name and descriptions.
