@@ -1,6 +1,6 @@
 from httpstatus.http_status import HTTPStatus
 
-print(HTTPStatus.OK)  # Output: 200 OK: Standard response for successful HTTP requests.
+print(HTTPStatus.OK)
 
 status = HTTPStatus.NOT_FOUND
 print(status.status)       # Output: 404
