@@ -6,14 +6,14 @@ The HTTP Status API is a Python package that provides an enumeration of HTTP sta
 
 This documentation provides an overview of the package, installation instructions, usage examples, and contribution guidelines.
 
-## Feature
+## Features
 
 - Enumeration of all standard HTTP status codes.
 - Descriptive names and explanations for each status code.
 - Methods to filter status codes by their categories (informational, success, redirection, client error, server error).
 - Utility methods to retrieve status codes by their integer value.
 
-## Installation
+## Installation Guide
 
 To install the package, use the following command:
 
