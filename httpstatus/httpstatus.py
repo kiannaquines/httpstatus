@@ -163,5 +163,8 @@ class HTTPStatus(HTTPStatusMixins, Enum):
         """
         return [status for status in cls if 500 <= status.status < 600]
 
+    def __repr__(self):
+        return f'<HTTPStatus: {self.status} {self.name}>'
+
     def __str__(self):
         return f'{self.status} {self.name}: {self.description}'
