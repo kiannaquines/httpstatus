@@ -12,6 +12,12 @@ class TestHTTPStatus(unittest.TestCase):
         self.assertEqual(HTTPStatus.NOT_FOUND.status, 404)
         self.assertEqual(HTTPStatus.NOT_FOUND.name, "Not Found")
 
+    def test_http_status_str(self):
+        """Test that each HTTPStatus has a correct string representation."""
+        self.assertEqual(str(HTTPStatus.OK), "200 OK")
+        self.assertEqual(str(HTTPStatus.NOT_FOUND), "404 Not Found")
+
+
     def test_enum_membership(self):
         """Test that all expected status codes are in the enum."""
         self.assertIn(HTTPStatus.OK, HTTPStatus)
